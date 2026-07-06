@@ -1,0 +1,9 @@
+# generated artifacts — reproduce with the pipeline (see README Quickstart)
+out/
+models/
+data/*.csv
+
+__pycache__/
+*.pyc
+.claude/
+.DS_Store
