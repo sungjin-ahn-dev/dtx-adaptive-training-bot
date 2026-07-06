@@ -9,9 +9,6 @@ D. mid_wall         : 중간 벽 (레벨 4-5 정체기), n_general>=21
 E. maxed_out        : 레벨 7 도달 (성실군의 "졸업" 패턴)
 F. steady_progress  : 진행 중 (위 어디에도 안 들어감)
 Z. never_played     : 처방만 받고 한 번도 안 함 (분석 제외용)
-
-Run:
-  python -m bot.label_archetypes
 """
 from __future__ import annotations
 from pathlib import Path

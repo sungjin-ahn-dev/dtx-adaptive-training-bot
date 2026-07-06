@@ -1,13 +1,7 @@
 """
-Build three feature tables — one per target our bot needs to predict.
-
-Outputs in out/:
-  score_features.parquet      — 1 row / event  → target = score
-  session_features.parquet    — 1 row / session → targets = gap_to_next (days), is_terminal
-  patient_features.parquet    — 1 row / patient → target = did_represcribe
-
-Run:
-  python -m bot.build_features
+Build the three feature tables the bot trains on, one per target:
+score (per event), session (gap-to-next + is_terminal per session), and
+patient (did_represcribe). All land in out/.
 """
 from __future__ import annotations
 from pathlib import Path
@@ -45,16 +39,13 @@ def build_score_features(events: pd.DataFrame, patients: pd.DataFrame) -> pd.Dat
     )
     df[["r3_mean", "r3_min", "r3_max"]] = rolled
 
-    # count features
-    df["n_at_exercise"] = grp_pe.cumcount()                           # prior count of this exercise
+    # cumcounts are prior-only (strictly before the current row)
+    df["n_at_exercise"] = grp_pe.cumcount()
     df["n_at_exercise_level"] = df.groupby(
         ["patient_id", "exercise_name", "level"], sort=False
-    ).cumcount()                                                       # prior count at same (ex, lvl)
-
-    # overall count for the patient
+    ).cumcount()
     df["t_overall"] = df.sort_values("created_at").groupby("patient_id").cumcount()
 
-    # time features
     df = df.sort_values("created_at")
     df["ts_local"] = df["created_at"].dt.tz_convert("Asia/Seoul")
     df["hour"] = df["ts_local"].dt.hour

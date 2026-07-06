@@ -1,10 +1,6 @@
 """
-임팩트 있는 종합 deep-dive 리포트.
-
-데이터 → archetype → ML 모델 → 시뮬 → 결과 전반을 풍부한 시각화로 정리.
-
-Run:
-  python -m bot.make_deep_report --out deep_report.html
+종합 deep-dive 리포트 — 데이터 → archetype → ML 모델 → 시뮬 → 결과 전반을
+풍부한 시각화로 정리한 단일 HTML.
 """
 from __future__ import annotations
 

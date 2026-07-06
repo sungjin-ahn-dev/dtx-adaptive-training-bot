@@ -7,9 +7,6 @@ For each key metric, run a 2-sample Kolmogorov–Smirnov test between
 
 KS p > 0.05 means we cannot reject "same distribution" — i.e. the bot is
 distributionally faithful on that metric.
-
-Run:
-  python -m bot.validate_bot
 """
 from __future__ import annotations
 from pathlib import Path

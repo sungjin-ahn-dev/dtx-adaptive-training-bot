@@ -1,20 +1,9 @@
 """
-Self-contained "how the experiment works" explainer (Korean).
-
-Reads the live pipeline outputs (parquet / json / csv) and renders a single
-HTML page that walks a non-ML reader through the WHOLE experiment:
-  - what the bot is and why it exists
-  - the raw data
-  - the 6 patient archetypes WITH their exact rules (e.g. what "안정형" means)
-  - the 3-layer behaviour decomposition + the 4 models
-  - what features feed each model
-  - how models are trained and validated (and what currently fails)
-  - the step-by-step simulation loop
-  - every difficulty-adjustment algorithm in plain Korean
-  - how to read the results table
-
-Run:
-  python -m bot.make_explainer            # writes out/explainer.html
+Self-contained "how the experiment works" explainer (Korean). Reads the live
+pipeline outputs and renders one HTML page (out/explainer.html) that walks a
+non-ML reader through the whole thing: the data, the 6 archetypes and their
+exact rules, the 4 models, training/validation, the simulation loop, and how
+to read the results table.
 """
 from __future__ import annotations
 

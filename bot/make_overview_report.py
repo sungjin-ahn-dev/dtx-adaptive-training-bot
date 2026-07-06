@@ -1,10 +1,6 @@
 """
-종합 HTML 리포트:
-  데이터 → archetype 라벨링 → ML 모델 4종 → 시뮬레이터 → 정책 비교 결과
-한 페이지에 무엇으로 학습했고, 어떻게 분석하며, 결과가 어떤지 정리.
-
-Run:
-  python -m bot.make_overview_report --out overview.html
+종합 HTML 리포트. 데이터 → archetype 라벨링 → ML 모델 4종 → 시뮬레이터 →
+정책 비교까지, 무엇으로 학습했고 어떻게 분석하며 결과가 어떤지를 한 페이지에 정리.
 """
 from __future__ import annotations
 

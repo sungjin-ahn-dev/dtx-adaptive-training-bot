@@ -1,11 +1,8 @@
 """
 Pluggable difficulty-adjustment algorithms.
 
-Each algorithm provides `update_level_batch(current_levels, recent_scores)`:
-  - current_levels: (N,) int — current level per patient
-  - recent_scores:  (N, 3) float — last 3 scores at this (patient, exercise),
-                                    NaN-padded when fewer than 3 are available
-  - returns: (N,) int — next level per patient
+Each exposes update_level_batch(current_levels, recent_scores) -> next levels.
+recent_scores is (N, 3) and NaN-padded when a (patient, exercise) has < 3 plays.
 """
 from __future__ import annotations
 import warnings

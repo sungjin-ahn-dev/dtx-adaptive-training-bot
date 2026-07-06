@@ -1,15 +1,6 @@
 """
-ML 학습 감사 스크립트.
-
-확인 항목:
-  1. Archetype feature leakage — archetype 빼고 학습 시 성능 차이
-  2. 5-fold cross-validation — 단일 holdout이 안정적이었는지
-  3. Train vs Test gap — overfitting 여부
-  4. Per-archetype subgroup performance
-  5. Termination 모델의 양성 4명 의존도
-
-Run:
-  python -m bot.audit_models
+모델 학습 감사. archetype leakage, 5-fold CV 안정성, train/test gap,
+archetype별 subgroup 성능을 한 번에 찍어본다. 결과는 out/audit_results.json.
 """
 from __future__ import annotations
 import json
@@ -32,7 +23,7 @@ RS = 42
 
 
 def _best_params(model_name: str) -> dict:
-    """Pick tuned hyperparams if available, else empty dict (use LightGBM defaults)."""
+    """Tuned hyperparams if we have them, else {} (LightGBM defaults)."""
     p = MODELS / "tuning_summary.json"
     if not p.exists():
         return {}

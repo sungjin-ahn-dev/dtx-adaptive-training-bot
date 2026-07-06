@@ -3,21 +3,15 @@
 Synthetic sample-data generator.
 
 이 저장소에는 실제 환자 데이터가 포함되어 있지 않습니다. 이 스크립트가
-실데이터와 동일한 스키마의 '가짜' 데이터를 생성하며, 전체 파이프라인은
-이 합성 데이터 위에서 그대로 동작합니다.
-
-Generates:
-  data/assignment_record.csv  -- one row per training event
-  data/prescription.csv       -- one row per prescription
+실데이터와 동일한 스키마의 '가짜' 데이터(assignment_record.csv,
+prescription.csv)를 생성하며, 전체 파이프라인은 이 합성 데이터 위에서
+그대로 동작합니다.
 
 Design: each synthetic patient has a latent ability level and an engagement
 rate. Scores follow score ~ base + slope*(ability - level) + noise, and the
 in-app difficulty rule (mean of last 3 scores: <0.5 down / >=0.8 up) drives
 level progression — so the 6 behavioral archetypes (early-dropout, stalled,
 mid-wall, maxed-out, ...) emerge naturally, like in the real dataset.
-
-Run:
-  python data/make_synthetic.py
 """
 from __future__ import annotations
 

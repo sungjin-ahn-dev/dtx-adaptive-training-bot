@@ -1,14 +1,8 @@
 """
-Train three LightGBM models that, together, define the patient bot:
-
-  score_model       — given (patient state, exercise, level) → score in [0, 1]
-  gap_model         — given (session state) → log days until next session
-  termination_model — given (patient state at end of window) → P(re-prescribe)
-
-All three split by patient_id so the same patient never appears in train and test.
-
-Run:
-  python -m bot.train_models
+Train the LightGBM models that define the patient bot: score ([0,1] per event),
+dropout (P(session is the last)), gap (log days to next session), and
+termination (P(re-prescribe)). Everything splits by patient_id, so a patient
+never lands in both train and test.
 """
 from __future__ import annotations
 from pathlib import Path

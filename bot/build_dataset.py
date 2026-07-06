@@ -1,16 +1,7 @@
 """
-DTx patient trajectory builder.
-
-Reads:
-  data/assignment_record.csv
-  data/prescription.csv
-
-Writes:
-  out/events.parquet     -- one row per training event
-  out/patients.parquet   -- per-patient summary (for archetype labeling)
-
-Run:
-  python -m bot.build_dataset
+Build patient trajectories from the raw assignment/prescription CSVs.
+Emits out/events.parquet (one row per training event) and out/patients.parquet
+(the per-patient summary that feeds archetype labeling).
 """
 from __future__ import annotations
 
@@ -28,10 +19,8 @@ GENERAL_EXERCISES = {"memorize_out_loud", "word_storming", "memorize_with_storie
 
 
 def _parse_dt(s: pd.Series) -> pd.Series:
-    """Robust datetime parse for the 0421 'clean' export, which contains some
-    malformed values where the date/time separator was dropped, e.g.
-    '2026-04-2003:45:44' -> '2026-04-20 03:45:44'. Insert the missing space,
-    then let pandas infer (mixed ISO8601)."""
+    """The 0421 'clean' export still has rows where the date/time separator was
+    dropped ('2026-04-2003:45:44'). Re-insert the space, then let pandas infer."""
     s = s.astype("string")
     s = s.str.replace(r"(\d{4}-\d{2}-\d{2})(\d{2}:\d{2}:\d{2})", r"\1 \2", regex=True)
     return pd.to_datetime(s, utc=True, format="mixed", errors="coerce")

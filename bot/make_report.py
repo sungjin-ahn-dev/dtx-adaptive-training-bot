@@ -1,12 +1,7 @@
 """
-Multi-seed policy matrix report.
-
-For each (composer, adjuster) policy, run K seeds and report mean ± 95% CI.
-This separates real algorithm effect from per-run noise.
-
-Run:
-  python -m bot.make_report --n 200 --seeds 5
-  python -m bot.make_report --n 300 --seeds 3 --adjuster current_50_80 drop_at_70
+Multi-seed policy matrix report. Runs each (composer, adjuster) policy over K
+seeds and reports mean ± 95% CI, so real algorithm effect is separable from
+per-run noise. Renders to a standalone HTML.
 """
 from __future__ import annotations
 

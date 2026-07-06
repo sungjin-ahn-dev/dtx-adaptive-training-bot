@@ -4,10 +4,6 @@ Optuna hyperparameter tuning + final retrain for all four models.
 5-fold patient-level CV inside Optuna; final model is retrained on the full
 data with the best hyperparams and the original train/test split (so audit
 metrics stay comparable).
-
-Run:
-  python -m bot.tune_models                  # all 4 models, 40 trials each
-  python -m bot.tune_models --model termination --trials 60
 """
 from __future__ import annotations
 import argparse

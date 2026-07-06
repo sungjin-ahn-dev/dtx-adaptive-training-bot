@@ -7,10 +7,6 @@ A treatment Policy = (SessionComposer, LevelAdjuster).
 
 Each iteration is one session. General and sub sessions alternate ~1:1, matching
 the real-data ratio. Predictions are batched across the alive cohort.
-
-Run:
-  python -m bot.simulator                  # compare all policies (composer × adjuster)
-  python -m bot.simulator --adjuster drop_at_70 --composer weakness_focused
 """
 from __future__ import annotations
 
@@ -301,7 +297,6 @@ class DTxSimulator:
 
             scores = self._predict_scores(c, ex_idx, new_lvl, patient_idx)
 
-            # update state
             c.levels[patient_idx, ex_idx] = new_lvl
             c.recent_scores[patient_idx, ex_idx, :-1] = c.recent_scores[patient_idx, ex_idx, 1:]
             c.recent_scores[patient_idx, ex_idx, -1] = scores

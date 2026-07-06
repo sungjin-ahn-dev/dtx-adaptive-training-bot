@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-README demo charts, rendered from the synthetic-data pipeline outputs.
-
-Run (after the pipeline):
-  python docs/make_charts.py
-
-Writes docs/img/*.png
+README demo charts, rendered from the pipeline outputs into docs/img/*.png.
 """
 from __future__ import annotations
 
