@@ -26,14 +26,14 @@ for fname in ("Malgun Gothic", "AppleGothic", "NanumGothic"):
         continue
 matplotlib.rcParams["axes.unicode_minus"] = False
 
-# reference palette (validated)
-SURFACE = "#fcfcfb"
-INK = "#0b0b0b"
-INK2 = "#52514e"
-MUTED = "#898781"
-GRID = "#e1e0d9"
-BASE = "#c3c2b7"
-SERIES = ["#2a78d6", "#1baf7a", "#eda100", "#008300", "#4a3aa7", "#e34948",
+# transparent background + theme-neutral grays (readable on light & dark)
+SURFACE = "none"
+INK = "#6e7781"    # 제목
+INK2 = "#8b949e"   # 값/축 라벨
+MUTED = "#8b949e"  # 눈금 / 통제군 막대
+GRID = "#8b949e"
+BASE = "#8b949e"
+SERIES = ["#3987e5", "#1baf7a", "#e0a020", "#2fa84f", "#9085e9", "#e66767",
           "#e87ba4", "#eb6834"]
 BLUE = SERIES[0]
 
@@ -55,7 +55,7 @@ def style_ax(ax):
     for s in ("left", "bottom"):
         ax.spines[s].set_color(BASE)
     ax.tick_params(colors=MUTED, labelsize=9)
-    ax.yaxis.grid(True, color=GRID, linewidth=0.8)
+    ax.yaxis.grid(True, color=GRID, linewidth=0.8, alpha=0.3)
     ax.set_axisbelow(True)
 
 
@@ -91,7 +91,7 @@ def chart_archetypes():
 
     fig.tight_layout()
     fig.savefig(IMG / "archetypes.png", dpi=150, bbox_inches="tight",
-                facecolor=SURFACE)
+                transparent=True)
     plt.close(fig)
     print("wrote archetypes.png")
 
@@ -108,7 +108,7 @@ def chart_simulation():
         (axes[1], "mean_maintain", "정책별 레벨 유지율 — 난이도 반응성", "{:.0%}"),
     ):
         style_ax(ax)
-        ax.xaxis.grid(True, color=GRID, linewidth=0.8)
+        ax.xaxis.grid(True, color=GRID, linewidth=0.8, alpha=0.3)
         ax.yaxis.grid(False)
         bars = ax.barh(names, sim[col], color=colors, height=0.62, zorder=3)
         for b, v in zip(bars, sim[col]):
@@ -120,7 +120,7 @@ def chart_simulation():
         ax.set_title(title, fontsize=11, color=INK, loc="left", pad=10)
     fig.tight_layout()
     fig.savefig(IMG / "simulation.png", dpi=150, bbox_inches="tight",
-                facecolor=SURFACE)
+                transparent=True)
     plt.close(fig)
     print("wrote simulation.png")
 
@@ -156,7 +156,7 @@ def chart_trajectories():
     ax.set_ylabel("평균 레벨", fontsize=9, color=INK2)
     fig.tight_layout()
     fig.savefig(IMG / "trajectories.png", dpi=150, bbox_inches="tight",
-                facecolor=SURFACE)
+                transparent=True)
     plt.close(fig)
     print("wrote trajectories.png")
 
