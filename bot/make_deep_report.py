@@ -1403,7 +1403,7 @@ def section_conclusion() -> str:
 </div>
 
 <div class="note">
-<h3 style="margin-top:0;border:none;padding:0">💡 실용적 권장</h3>
+<h3 style="margin-top:0;border:none;padding:0">실용적 권장</h3>
 의사결정 prior로는 OK, 결정적 정량 근거로는 부족.<br>
 "몇 % 재처방률 상승"이 아니라 "<b>어떤 방향으로 환자 행동이 바뀐다</b>"는 신호로 사용 권장.<br>
 진짜 결정적 근거가 필요하면 <b>실제 환자에서 작은 A/B 단기 시험</b>이 필요.
